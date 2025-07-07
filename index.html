@@ -199,28 +199,39 @@
         }
 
         .pricing-card.featured {
-            border-color: var(--dog-house-red);
-            position: relative;
-            transform: rotate(0deg) scale(1.05);
-        }
+    border-color: var(--dog-house-red);
+    position: relative;
+    transform: rotate(0deg) scale(1.05);
+    background-color: white !important; /* force opaque */
+    box-shadow: 0 8px 0 var(--earth-brown);
+    z-index: 10;
+    opacity: 1 !important; /* force full opacity */
+    isolation: isolate; /* isolate from any parent blending/transparency */
+}
+
 
         .pricing-card.featured:hover {
             transform: translateY(-5px) rotate(0deg) scale(1.05);
         }
 
         .pricing-card.featured::before {
-            content: 'POPULAR';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dog-house-red);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+    content: 'BEST VALUE';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dog-house-red);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 11;
+    opacity: 1 !important;
+}
+
+
+
 
         .plan-name {
             font-size: 1.8rem;
@@ -556,40 +567,42 @@
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Choose Your Plan</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card featured">
-                    <div class="plan-name">Weekly Service</div>
-                    <div class="plan-price">$15</div>
-                    <div class="plan-frequency">per week</div>
-                    <ul class="plan-features">
-                        <li>✓ Weekly yard cleanup</li>
-                        <li>✓ Flexible scheduling</li>
-                        <li>✓ Eco-friendly disposal</li>
-                        <li>✓ Reliable service</li>
-                        <li>✓ Cancel anytime</li>
-                    </ul>
-                    <button class="select-plan" onclick="openPaymentModal('weekly')">Select Weekly Plan</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <div class="plan-name">Monthly Service</div>
-                    <div class="plan-price">$55</div>
-                    <div class="plan-frequency">per month</div>
-                    <ul class="plan-features">
-                        <li>✓ Full month coverage</li>
-                        <li>✓ One-time payment</li>
-                        <li>✓ Priority scheduling</li>
-                        <li>✓ Eco-friendly disposal</li>
-                        <li>✓ Satisfaction guarantee</li>
-                    </ul>
-                    <button class="select-plan" onclick="openPaymentModal('monthly')">Select Monthly Plan</button>
-                </div>
+<!-- 👇 This is the section you need to update (replace your current #services section with this) -->
+<section id="services" class="services">
+    <div class="container">
+        <h2 class="section-title">Choose Your Plan</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="plan-name">Weekly Service</div>
+                <div class="plan-price">$15</div>
+                <div class="plan-frequency">per week</div>
+                <ul class="plan-features">
+                    <li>✓ Weekly yard cleanup</li>
+                    <li>✓ Flexible scheduling</li>
+                    <li>✓ Eco-friendly disposal</li>
+                    <li>✓ Reliable service</li>
+                    <li>✓ Cancel anytime</li>
+                </ul>
+                <button class="select-plan" onclick="openPaymentModal('weekly')">Select Weekly Plan</button>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="plan-name">Monthly Service</div>
+                <div class="plan-price">$55</div>
+                <div class="plan-frequency">per month</div>
+                <ul class="plan-features">
+                    <li>✓ Full month coverage</li>
+                    <li>✓ One-time payment</li>
+                    <li>✓ Priority scheduling</li>
+                    <li>✓ Eco-friendly disposal</li>
+                    <li>✓ Satisfaction guarantee</li>
+                </ul>
+                <button class="select-plan" onclick="openPaymentModal('monthly')">Select Monthly Plan</button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section id="about" class="about">
         <div class="container">
@@ -801,3 +814,4 @@
     </script>
 </body>
 </html>
+
