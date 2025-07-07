@@ -6,7 +6,7 @@
   <title>TidyTurfTeam - Service Form</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       background: #f5f5dc;
       margin: 0;
       padding: 0;
@@ -81,12 +81,25 @@
       font-size: 0.9rem;
       color: #666;
     }
+
+    .plan-summary {
+      background: #f0fff0;
+      padding: 10px 20px;
+      border-left: 5px solid #7fb069;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #333;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
   <div class="form-container">
     <h1>Start Your Service</h1>
+    <div class="plan-summary" id="selectedPlanDisplay">Selected Plan: </div>
     <form action="https://formspree.io/f/meokbqjg" method="POST">
+      <input type="hidden" name="selected_plan" id="selectedPlanInput" />
+
       <label class="required">Full Name</label>
       <input type="text" name="name" required />
 
@@ -136,5 +149,21 @@
     </form>
     <div class="footer-note">We’ll review your info and contact you soon!</div>
   </div>
+
+  <script>
+    // Read ?plan= from URL and display it
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedPlan = urlParams.get('plan');
+    const planDisplay = document.getElementById('selectedPlanDisplay');
+    const planInput = document.getElementById('selectedPlanInput');
+
+    if (selectedPlan) {
+      let planName = selectedPlan === 'weekly' ? 'Weekly ($15/week)' : 'Monthly ($55/month)';
+      planDisplay.textContent = `Selected Plan: ${planName}`;
+      planInput.value = planName;
+    } else {
+      planDisplay.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
