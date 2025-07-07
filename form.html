@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TidyTurfTeam - Service Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5dc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 6px 0 #7fb069;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8b4513;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #7fb069;
+      border-radius: 8px;
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .required:after {
+      content: " *";
+      color: red;
+    }
+
+    button[type="submit"] {
+      background: #c44536;
+      color: white;
+      font-weight: bold;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 0 #8b4513;
+    }
+
+    button[type="submit"]:hover {
+      background: #a03028;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Start Your Service</h1>
+    <form action="https://formspree.io/f/meokbqjg" method="POST">
+      <label class="required">Full Name</label>
+      <input type="text" name="name" required />
+
+      <label class="required">Email Address</label>
+      <input type="email" name="email" required />
+
+      <label class="required">Phone Number</label>
+      <input type="tel" name="phone" required />
+
+      <label class="required">Home Address</label>
+      <input type="text" name="address" required />
+
+      <label class="required">How many dogs do you have?</label>
+      <select name="number_of_dogs" required>
+        <option value="">-- Select --</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+
+      <label>How often do you currently pick up waste?</label>
+      <select name="current_waste_cleanup">
+        <option value="">-- Optional --</option>
+        <option value="Daily">Daily</option>
+        <option value="Every few days">Every few days</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Rarely/Never">Rarely/Never</option>
+      </select>
+
+      <label>Access Notes (e.g. locked gate, key location)</label>
+      <textarea name="access_notes" placeholder="Tell us how to access your yard"></textarea>
+
+      <label>Will someone be home during visits?</label>
+      <select name="someone_home">
+        <option value="">-- Optional --</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Sometimes">Sometimes</option>
+      </select>
+
+      <label>Do you have a key/code we need to get in?</label>
+      <textarea name="key_code_info" placeholder="Optional: Gate code or instructions"></textarea>
+
+      <label>Other Info or Notes</label>
+      <textarea name="additional_notes" placeholder="Anything else we should know?"></textarea>
+
+      <button type="submit">Submit & Continue</button>
+    </form>
+    <div class="footer-note">We’ll review your info and contact you soon!</div>
+  </div>
+</body>
+</html>
