@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free Cleanup Form</title>
+
   <style>
+    /* Real Comic Sans MS Embedded */
+    @font-face {
+      font-family: 'Comic Sans MS';
+      src: url('https://cdn.jsdelivr.net/gh/JackBarry/Comic-Sans-Font@main/ComicSansMS.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     :root {
       --bg-color: #A8D5A8;
       --form-bg: #fff;
@@ -12,7 +21,7 @@
       --shadow: #8B4513;
       --button-bg: #C44536;
       --button-hover: #A0522D;
-      --font: 'Comic Sans MS', cursive, sans-serif;
+      --font: 'Comic Sans MS', cursive;
     }
 
     body {
@@ -135,8 +144,12 @@
         <option>Mrs.</option>
         <option>Ms.</option>
         <option>Miss</option>
-        <option value="Other">Other</option>
+        <option>Mx.</option>
+        <option>Dr.</option>
+        <option>Prof.</option>
+        <option>Rev.</option>
         <option>Prefer not to say</option>
+        <option value="Other">Other</option>
       </select>
       <div id="title-other-container" class="hidden">
         <label>Other *</label>
@@ -182,7 +195,7 @@
         <div id="dog1-fields">
           <label>Dog 1 - Breed *</label>
           <input type="text" name="dog1_type" required>
-
+          
           <label>Dog 1 - Size *</label>
           <select name="dog1_size" id="dog1-size" required>
             <option value="">-- Select --</option>
@@ -203,7 +216,7 @@
         <div id="dog2-fields" class="hidden">
           <label>Dog 2 - Breed *</label>
           <input type="text" name="dog2_type" required>
-
+          
           <label>Dog 2 - Size *</label>
           <select name="dog2_size" id="dog2-size" required>
             <option value="">-- Select --</option>
