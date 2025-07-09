@@ -82,9 +82,24 @@
 <body>
   <div class="container">
     <h1>Help Us Train!</h1>
-    <p>Hi! We need some training for our new business we are starting. By filling out this form, you'll give us insight into our audience and help us gain real experience in your yard. This doesn't just help us — it helps you by potentially getting a **free dog-waste pickup**!</p>
+    <p>Hi! We need some training for our new business we are starting. By filling out this form, you'll give us insight into our audience and help us gain some experience. This doesn't just help us, it helps you by potentially getting a free dog-waste pickup!</p>
 
     <form id="training-form" action="https://formspree.io/f/myzjqzbo" method="POST">
+      <label>Title *</label>
+      <select name="title" id="title-select" required>
+        <option value="">-- Select --</option>
+        <option>Mr.</option>
+        <option>Mrs.</option>
+        <option>Ms.</option>
+        <option>Miss</option>
+        <option value="Other">Other</option>
+        <option>Prefer not to say</option>
+      </select>
+      <div id="title-other-container" class="hidden">
+        <label>Other *</label>
+        <input type="text" name="title_other">
+      </div>
+
       <label>First Name *</label>
       <input type="text" name="first_name" required>
 
@@ -113,15 +128,59 @@
       <textarea name="address" rows="2" required></textarea>
 
       <label>How many dogs do you have? *</label>
-      <select name="dogs" required>
+      <select name="dogs" id="dog-count" required>
         <option value="">-- Select --</option>
         <option value="None">None</option>
         <option value="1">1</option>
         <option value="2">2</option>
       </select>
 
+      <div id="dog-details-container" class="hidden">
+        <div id="dog1-fields">
+          <label>Dog 1 - Breed *</label>
+          <input type="text" name="dog1_type" required>
+          
+          <label>Dog 1 - Size *</label>
+          <select name="dog1_size" id="dog1-size" required>
+            <option value="">-- Select --</option>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option value="Other">Other</option>
+          </select>
+          <div id="dog1-size-other-container" class="hidden">
+            <label>Other *</label>
+            <input type="text" name="dog1_size_other">
+          </div>
+
+          <label>Dog 1 - Age *</label>
+          <input type="text" name="dog1_age" required>
+        </div>
+
+        <div id="dog2-fields" class="hidden">
+          <label>Dog 2 - Breed *</label>
+          <input type="text" name="dog2_type" required>
+          
+          <label>Dog 2 - Size *</label>
+          <select name="dog2_size" id="dog2-size" required>
+            <option value="">-- Select --</option>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option value="Other">Other</option>
+          </select>
+          <div id="dog2-size-other-container" class="hidden">
+            <label>Other *</label>
+            <input type="text" name="dog2_size_other">
+          </div>
+
+          <label>Dog 2 - Age *</label>
+          <input type="text" name="dog2_age" required>
+        </div>
+      </div>
+
       <label>How often do you pick up dog waste? *</label>
-      <input type="text" name="pickup_frequency" placeholder="e.g. Every 3 days, once a week, etc." required>
+      <input type="text" name="pickup_frequency" placeholder="e.g. Every 3 days, once a week" required>
 
       <label>How long does it usually take you? *</label>
       <input type="text" name="duration" placeholder="e.g. 20 minutes" required>
@@ -132,12 +191,12 @@
       <label>Would you sign up for a service like this? *</label>
       <select name="interested" required>
         <option value="">-- Select --</option>
-        <option value="Yes">Yes</option>
-        <option value="Maybe">Maybe</option>
-        <option value="No">No</option>
+        <option>Yes</option>
+        <option>Maybe</option>
+        <option>No</option>
       </select>
 
-      <label>Other comments, suggestions, or questions?</label>
+      <label>Other comments, suggestions, questions, or concerns?</label>
       <textarea name="notes" rows="2"></textarea>
 
       <button type="submit">Submit</button>
@@ -145,6 +204,16 @@
   </div>
 
   <script>
+    const titleSelect = document.getElementById("title-select");
+    const titleOtherContainer = document.getElementById("title-other-container");
+    const titleOtherInput = titleOtherContainer.querySelector("input");
+
+    titleSelect.addEventListener("change", () => {
+      const showOther = titleSelect.value === "Other";
+      titleOtherContainer.classList.toggle("hidden", !showOther);
+      titleOtherInput.required = showOther;
+    });
+
     const method = document.getElementById("contact-method");
     const phoneField = document.getElementById("phone-field");
     const emailField = document.getElementById("email-field");
@@ -157,27 +226,38 @@
       phoneField.classList.toggle("hidden", value === "Email");
       emailField.classList.toggle("hidden", value === "Text");
 
-      if (value === "Text") {
-        phoneField.classList.remove("hidden");
-        phoneInput.required = true;
-        emailField.classList.add("hidden");
-        emailInput.required = false;
-      } else if (value === "Email") {
-        emailField.classList.remove("hidden");
-        emailInput.required = true;
-        phoneField.classList.add("hidden");
-        phoneInput.required = false;
-      } else if (value === "Both") {
-        phoneField.classList.remove("hidden");
-        emailField.classList.remove("hidden");
-        phoneInput.required = true;
-        emailInput.required = true;
-      } else {
-        phoneField.classList.add("hidden");
-        emailField.classList.add("hidden");
-        phoneInput.required = false;
-        emailInput.required = false;
-      }
+      phoneInput.required = value !== "Email" && value !== "";
+      emailInput.required = value !== "Text" && value !== "";
+    });
+
+    const dogCount = document.getElementById("dog-count");
+    const dogDetailsContainer = document.getElementById("dog-details-container");
+    const dog2Fields = document.getElementById("dog2-fields");
+
+    const dog1Size = document.getElementById("dog1-size");
+    const dog1SizeOtherContainer = document.getElementById("dog1-size-other-container");
+    const dog1SizeOtherInput = dog1SizeOtherContainer.querySelector("input");
+
+    const dog2Size = document.getElementById("dog2-size");
+    const dog2SizeOtherContainer = document.getElementById("dog2-size-other-container");
+    const dog2SizeOtherInput = dog2SizeOtherContainer.querySelector("input");
+
+    dogCount.addEventListener("change", () => {
+      const value = dogCount.value;
+      dogDetailsContainer.classList.toggle("hidden", value === "None" || value === "");
+      dog2Fields.classList.toggle("hidden", value !== "2");
+    });
+
+    dog1Size.addEventListener("change", () => {
+      const showOther = dog1Size.value === "Other";
+      dog1SizeOtherContainer.classList.toggle("hidden", !showOther);
+      dog1SizeOtherInput.required = showOther;
+    });
+
+    dog2Size.addEventListener("change", () => {
+      const showOther = dog2Size.value === "Other";
+      dog2SizeOtherContainer.classList.toggle("hidden", !showOther);
+      dog2SizeOtherInput.required = showOther;
     });
 
     document.getElementById("training-form").addEventListener("submit", function (e) {
