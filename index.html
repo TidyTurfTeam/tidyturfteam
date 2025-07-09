@@ -2,31 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Cleanup Form</title>
   <style>
+    :root {
+      --bg-color: #A8D5A8;
+      --form-bg: #fff;
+      --accent: #7FB069;
+      --shadow: #8B4513;
+      --button-bg: #C44536;
+      --button-hover: #A0522D;
+      --font: 'Comic Sans MS', cursive, sans-serif;
+    }
+
     body {
-      font-family: 'Comic Sans MS', cursive;
-      background: #A8D5A8;
-      padding: 2rem;
+      font-family: var(--font);
+      background: var(--bg-color);
+      padding: 1.5rem;
+      margin: 0;
       color: #333;
     }
 
     .container {
       max-width: 700px;
       margin: auto;
-      background: white;
+      background: var(--form-bg);
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 8px 0 #8B4513;
-      border: 4px solid #7FB069;
+      box-shadow: 0 8px 0 var(--shadow);
+      border: 4px solid var(--accent);
     }
 
     h1 {
       text-align: center;
-      color: #8B4513;
-      text-shadow: 2px 2px #7FB069;
+      color: var(--shadow);
+      text-shadow: 2px 2px var(--accent);
       margin-bottom: 1rem;
+      font-size: 2rem;
     }
 
     p {
@@ -49,9 +61,12 @@
 
     input, textarea, select {
       padding: 0.8rem;
-      border: 2px solid #7FB069;
+      border: 2px solid var(--accent);
       border-radius: 10px;
       font-size: 1rem;
+      font-family: var(--font);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     textarea {
@@ -61,21 +76,49 @@
     button {
       padding: 1rem;
       font-size: 1.1rem;
-      background: #C44536;
+      background: var(--button-bg);
       color: white;
       border: none;
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 4px 0 #8B4513;
+      box-shadow: 0 4px 0 var(--shadow);
+      font-family: var(--font);
     }
 
     button:hover {
-      background: #A0522D;
+      background: var(--button-hover);
     }
 
     .hidden {
       display: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        padding: 1.5rem;
+        border-width: 3px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+
+      input, textarea, select {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -139,7 +182,7 @@
         <div id="dog1-fields">
           <label>Dog 1 - Breed *</label>
           <input type="text" name="dog1_type" required>
-          
+
           <label>Dog 1 - Size *</label>
           <select name="dog1_size" id="dog1-size" required>
             <option value="">-- Select --</option>
@@ -160,7 +203,7 @@
         <div id="dog2-fields" class="hidden">
           <label>Dog 2 - Breed *</label>
           <input type="text" name="dog2_type" required>
-          
+
           <label>Dog 2 - Size *</label>
           <select name="dog2_size" id="dog2-size" required>
             <option value="">-- Select --</option>
