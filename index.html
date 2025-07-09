@@ -2,59 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Free Cleanup Form</title>
-
   <style>
-    /* Real Comic Sans MS Embedded */
+    /* Load local Comic Sans MS font */
     @font-face {
       font-family: 'Comic Sans MS';
-      src: url('https://cdn.jsdelivr.net/gh/JackBarry/Comic-Sans-Font@main/ComicSansMS.woff') format('woff');
+      src: url('./ComicSansMS.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
     }
 
-    :root {
-      --bg-color: #A8D5A8;
-      --form-bg: #fff;
-      --accent: #7FB069;
-      --shadow: #8B4513;
-      --button-bg: #C44536;
-      --button-hover: #A0522D;
-      --font: 'Comic Sans MS', cursive;
+    /* Global reset and box sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, h1, p, label, input, select, textarea, button {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      font-family: var(--font);
-      background: var(--bg-color);
-      padding: 1.5rem;
-      margin: 0;
+      background: #A8D5A8;
       color: #333;
+      padding: 1.5rem 1rem;
+      -webkit-text-size-adjust: 100%; /* prevent font scaling on iOS */
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     .container {
       max-width: 700px;
-      margin: auto;
-      background: var(--form-bg);
+      margin: 0 auto;
+      background: white;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 8px 0 var(--shadow);
-      border: 4px solid var(--accent);
+      box-shadow: 0 8px 0 #8B4513;
+      border: 4px solid #7FB069;
     }
 
     h1 {
       text-align: center;
-      color: var(--shadow);
-      text-shadow: 2px 2px var(--accent);
+      color: #8B4513;
+      text-shadow: 2px 2px #7FB069;
       margin-bottom: 1rem;
       font-size: 2rem;
     }
 
     p {
-      font-size: 1.1rem;
       font-weight: bold;
       margin-bottom: 2rem;
       text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.4;
     }
 
     form {
@@ -66,16 +71,17 @@
     label {
       font-weight: bold;
       margin-top: 0.5rem;
+      font-size: 1rem;
     }
 
     input, textarea, select {
       padding: 0.8rem;
-      border: 2px solid var(--accent);
+      border: 2px solid #7FB069;
       border-radius: 10px;
       font-size: 1rem;
-      font-family: var(--font);
-      width: 100%;
-      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     textarea {
@@ -85,48 +91,45 @@
     button {
       padding: 1rem;
       font-size: 1.1rem;
-      background: var(--button-bg);
+      background: #C44536;
       color: white;
       border: none;
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 4px 0 var(--shadow);
-      font-family: var(--font);
+      box-shadow: 0 4px 0 #8B4513;
+      font-family: 'Comic Sans MS', cursive !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.2s ease;
     }
 
     button:hover {
-      background: var(--button-hover);
+      background: #A0522D;
     }
 
     .hidden {
       display: none;
     }
 
-    @media (max-width: 600px) {
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
       body {
-        padding: 1rem;
+        padding: 1rem 0.8rem;
       }
-
       .container {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
         border-width: 3px;
+        border-radius: 15px;
       }
-
       h1 {
         font-size: 1.6rem;
       }
-
-      p {
+      label, input, select, textarea, button {
         font-size: 1rem;
       }
-
       button {
-        font-size: 1rem;
-      }
-
-      input, textarea, select {
-        font-size: 1rem;
+        padding: 0.9rem;
       }
     }
   </style>
@@ -144,12 +147,8 @@
         <option>Mrs.</option>
         <option>Ms.</option>
         <option>Miss</option>
-        <option>Mx.</option>
-        <option>Dr.</option>
-        <option>Prof.</option>
-        <option>Rev.</option>
-        <option>Prefer not to say</option>
         <option value="Other">Other</option>
+        <option>Prefer not to say</option>
       </select>
       <div id="title-other-container" class="hidden">
         <label>Other *</label>
